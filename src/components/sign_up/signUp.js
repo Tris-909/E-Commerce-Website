@@ -47,6 +47,7 @@ class SignUp extends Component {
             password: '',
             confirmPassword: ''
           });
+          this.props.history.push('/');
         } catch (error) {
           console.error(error);
         }

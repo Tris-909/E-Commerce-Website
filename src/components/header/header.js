@@ -1,11 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { signOut } from '../../firebase/firebase';
 import './header.scss';
 
-export default function Header({ user }) {
-    let signOutContent = user ? (
+function Header(props) {
+    let signOutContent = props.currentUser ? (
         <Link className="option" to="/" onClick={signOut}>SIGN OUT</Link>
     ) : <Link className="option" to="/signIn" >SIGN IN</Link>;
     return (
@@ -21,3 +22,9 @@ export default function Header({ user }) {
         </div>
     )
 }
+
+const mapStateToProps = (state) => ({
+    currentUser: state.user.currentUser
+});
+
+export default connect(mapStateToProps)(Header);
