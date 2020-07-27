@@ -17,9 +17,29 @@ class App extends React.Component {
 
   unsubcribeFromAuth = null;
 
+  //** LOGIN/SIGNUP will lead to the exist of {AuthUser}  */
+  //** If we have {AuthUser}, take a snapShot then save data to the current state  */
+  //** If we don't have it, state simply equal to null */
   componentDidMount() {
-    this.unsubcribeFromAuth = auth.onAuthStateChanged(user => {
-      createUserProfileDocument(user);
+    this.unsubcribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      console.log(userAuth);
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.onSnapshot(snapShot => {
+          console.log(snapShot.data() );
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data() 
+            }
+          });
+        })
+      } else {
+        this.setState({
+          currentUser: null
+        })
+      }
+      
     });
   }
 
