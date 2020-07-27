@@ -8,7 +8,7 @@ import ShopPage from './pages/shop/shop';
 import Header from './components/header/header';
 import signInContainer from './pages/signIn/signIn';
 
-import { auth } from './firebase/firebase';
+import { auth, createUserProfileDocument } from './firebase/firebase';
 
 class App extends React.Component {
   state = {
@@ -19,7 +19,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.unsubcribeFromAuth = auth.onAuthStateChanged(user => {
-      this.setState({currentUser: user}, () =>  console.log(this.state.currentUser));
+      createUserProfileDocument(user);
     });
   }
 
