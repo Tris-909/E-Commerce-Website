@@ -23,11 +23,10 @@ const cartReducer = (state = initialState, action) => {
                         ...state,
                         itemsList: [...curItem]
                     }
-                } else if ( (curItem[i].id !== newItem.id) && (i !== curItem.length-1) ) {
-                    let newArr = [...curItem, newItem];
+                } else if ( (curItem[i].id !== newItem.id) && (i === curItem.length-1) ) {
                     return {
                         ...state,
-                        itemsList: [...newArr]
+                        itemsList: [...curItem, newItem]
                     }
                 }
             }
