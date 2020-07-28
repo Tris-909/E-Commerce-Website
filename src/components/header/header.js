@@ -20,15 +20,16 @@ function Header(props) {
                 <Link className="option" to="/shop">SHOP</Link>
                 <Link className="option" to="/contact">CONTACT</Link>
                 {signOutContent}
-                <CartIcon />
+                <CartIcon /> 
             </div>
-            <CardDropdown />
+            {props.isOpen ? <CardDropdown /> : null }
         </div>
     )
 }
 
 const mapStateToProps = (state) => ({
-    currentUser: state.user.currentUser
+    currentUser: state.user.currentUser,
+    isOpen: state.cart.isOpen
 });
 
 export default connect(mapStateToProps)(Header);
