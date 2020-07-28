@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import { ReactComponent as Logo } from '../../assets/crown.svg';
 import { signOut } from '../../firebase/firebase';
 import './header.scss';
+import CartIcon from '../cart-icon/CartIcon';
+import CardDropdown from '../cart/CartDropdown';
 
 function Header(props) {
     let signOutContent = props.currentUser ? (
@@ -18,7 +20,9 @@ function Header(props) {
                 <Link className="option" to="/shop">SHOP</Link>
                 <Link className="option" to="/contact">CONTACT</Link>
                 {signOutContent}
+                <CartIcon />
             </div>
+            <CardDropdown />
         </div>
     )
 }
