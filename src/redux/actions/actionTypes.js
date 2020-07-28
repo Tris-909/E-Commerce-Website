@@ -1,2 +1,7 @@
+//** USER REDUX */
+
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
+
+//** CART REDUX */
 export const TRIGGER_CART_MENU = "TRIGGER_CART_MENU";
+export const ADD_ITEM_TO_CART = "ADD_ITEM_TO_CART";
