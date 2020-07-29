@@ -13,3 +13,13 @@ export const removeItem = (id) => ({
     type: actionTypes.REMOVE_ITEM_FROM_CART,
     payload: id
 });
+
+export const incrementItemQuantity = (id) => ({
+    type: actionTypes.INCREASE_ITEM_QUANTITY,
+    payload: id
+});
+
+export const decrementItemQuantity = (id) => ({
+    type: actionTypes.DECREMENT_ITEM_QUANTITY,
+    payload: id
+});
