@@ -26,7 +26,7 @@ function Checkout({ items, total }) {
                 </div>
             </div>
             {
-                items.map((item) => <CheckoutItem key={item.id} imageUrl={item.imageUrl} name={item.name} quantities={item.quantities} price={item.price} />)
+                items.map((item) => <CheckoutItem key={item.id} id={item.id} imageUrl={item.imageUrl} name={item.name} quantities={item.quantities} price={item.price} />)
             }
             <div className="total"><span>TOTAL: ${ total }</span></div>
         </div>  

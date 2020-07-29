@@ -34,6 +34,14 @@ const cartReducer = (state = initialState, action) => {
                 ...state,
                 itemsList: [...state.itemsList, newItem]
             }
+        case actionTypes.REMOVE_ITEM_FROM_CART: 
+            let curListItem = [...state.itemsList];
+            let removeIndex = curListItem.findIndex(item => item.id === action.payload);
+            curListItem.splice(removeIndex, 1);
+            return {
+                ...state,
+                itemsList: curListItem
+            }
         default: 
             return state;
     }
