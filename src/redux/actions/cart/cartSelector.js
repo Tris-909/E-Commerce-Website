@@ -13,3 +13,15 @@ export const selectCartItemsCount = createSelector(
         (accumulatedQuantity, singleItem) => accumulatedQuantity + singleItem.quantities, 0
     )
 )
+
+export const getIsOpenStatus = createSelector(
+    [selectCart],
+    (user) => user.isOpen
+)
+
+export const selectCartTotal = createSelector(
+    [selectCartItems],
+    itemsList => itemsList.reduce(
+        (accumulatedTotal, singleItem) => accumulatedTotal + singleItem.quantities*singleItem.price, 0
+    )
+)

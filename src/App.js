@@ -6,12 +6,15 @@ import {Switch ,Route, Redirect} from 'react-router-dom';
 import Homepage from './pages/homepage/homepage';
 import ShopPage from './pages/shop/shop';
 import Header from './components/header/header';
+import Checkout from './pages/checkout/checkout';
 import SignInContainer from './pages/signIn/signIn';
 
 import { auth, createUserProfileDocument } from './firebase/firebase';
 
 import {connect} from 'react-redux';
 import {setCurrentUser} from './redux/actions/user/userActions';
+import {settUser} from './redux/actions/user/userSelector';
+
 
 class App extends React.Component {
   state = {
@@ -51,14 +54,15 @@ class App extends React.Component {
           <Route exact path="/" component={Homepage} />
           <Route exact path="/shop" component={ShopPage} />
           <Route exact path="/signin" render={() => this.props.currentUser ? (<Redirect to="/" />) : (<SignInContainer /> ) } />
+          <Route exact path="/checkout" component={Checkout} />
         </Switch>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
+const mapStateToProps = (state) => ({
+  currentUser: settUser(state)
 }); 
 
 const mapDispatchToProps = (dispatch) => ({

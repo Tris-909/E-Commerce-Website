@@ -6,7 +6,10 @@ import { signOut } from '../../firebase/firebase';
 import './header.scss';
 import CartIcon from '../cart-icon/CartIcon';
 import CardDropdown from '../cart/CartDropdown';
+import { settUser } from '../../redux/actions/user/userSelector';
+import { getIsOpenStatus } from '../../redux/actions/cart/cartSelector';
 
+ 
 function Header(props) {
     let signOutContent = props.currentUser ? (
         <Link className="option" to="/" onClick={signOut}>SIGN OUT</Link>
@@ -28,8 +31,8 @@ function Header(props) {
 }
 
 const mapStateToProps = (state) => ({
-    currentUser: state.user.currentUser,
-    isOpen: state.cart.isOpen
+    currentUser: settUser(state),
+    isOpen: getIsOpenStatus(state)
 });
 
 export default connect(mapStateToProps)(Header);
