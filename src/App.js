@@ -15,7 +15,6 @@ import {connect} from 'react-redux';
 import {setCurrentUser} from './redux/actions/user/userActions';
 import {settUser} from './redux/actions/user/userSelector';
 
-
 class App extends React.Component {
   state = {
     currentUser: null
