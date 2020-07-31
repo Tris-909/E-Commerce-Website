@@ -1,32 +1,70 @@
 import React from 'react'
+
+//** PACKAGES */
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
-import { ReactComponent as Logo } from '../../assets/crown.svg';
+import styled from 'styled-components';
 import { signOut } from '../../firebase/firebase';
-import './header.scss';
+
+//** COMPONENTS */
 import CartIcon from '../cart-icon/CartIcon';
 import CardDropdown from '../cart/CartDropdown';
+
+//** REDUX */
+import {connect} from 'react-redux';
 import { settUser } from '../../redux/actions/user/userSelector';
 import { getIsOpenStatus } from '../../redux/actions/cart/cartSelector';
 
- 
+//** ASSETS */
+import { ReactComponent as Logo } from '../../assets/crown.svg';
+
+//** CSS */
+const HeaderContainer = styled.div`
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+`;
+
+const LogoContainer = styled(Link)`
+    height: 100%;
+    width: 70px;
+    padding: 25px;
+`;
+
+const Options = styled.div`
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+`;
+
+const Option = styled(Link)`
+    font-size: 2em;
+    padding: 10px 15px;
+    cursor: pointer;
+`;
+
+//** COMPONENTS */
+
 function Header(props) {
     let signOutContent = props.currentUser ? (
-        <Link className="option" to="/" onClick={signOut}>SIGN OUT</Link>
-    ) : <Link className="option" to="/signIn" >SIGN IN</Link>;
+        <Option to="/" onClick={signOut}>SIGN OUT</Option>
+    ) : <Option to="/signIn" >SIGN IN</Option>;
     return (
-        <div className="header">
-            <Link className="logo-container" to="/">
+        <HeaderContainer>
+            <LogoContainer to="/">
                 <Logo className="logo" />
-            </Link>
-            <div className="options">
-                <Link className="option" to="/shop">SHOP</Link>
-                <Link className="option" to="/contact">CONTACT</Link>
+            </LogoContainer>
+            <Options>
+                <Option to="/shop">SHOP</Option>
+                <Option to="/contact">CONTACT</Option>
                 {signOutContent}
                 <CartIcon /> 
-            </div>
+            </Options>
             {props.isOpen ? <CardDropdown /> : null }
-        </div>
+        </HeaderContainer>
     )
 }
 

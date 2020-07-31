@@ -1,20 +1,48 @@
 import React from 'react'
-import './collection.styles.scss';
+
+//** PACKAGES */
+import styled from 'styled-components';
+
+//** REDUX */
 import { connect } from 'react-redux';
-import CollectionItem from '../../components/collection-item/CollectionItem';
 import {selectCollection} from '../../redux/actions/cart/cartSelector';
 
+//** COMPONENTS */
+import CollectionItem from '../../components/collection-item/CollectionItem';
+
+//** CSS */
+const CollectionPageContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+const Title = styled.h2`
+    font-size: 38px;
+    margin: 0 auto 30px;
+`;
+
+const ItemsContainer = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+`;
+
+const CollectionItemContainer = styled(CollectionItem)`
+    margin-bottom: 30px;
+`;
+
+//** COMPONENTS */
 const CollectionPage  = ({ collection }) => {
     const {title, items} = collection;
     return (
-        <div className="collection-page">
-            <h2 className="title">{title}</h2>
-            <div className="items">
+        <CollectionPageContainer>
+            <Title>{title}</Title>
+            <ItemsContainer>
                 {
-                    items.map(item => <CollectionItem key={item.id} item={item}/>)
+                    items.map(item => <CollectionItemContainer key={item.id} item={item}/>)
                 }
-            </div>
-        </div>
+            </ItemsContainer>
+        </CollectionPageContainer>
     )
 }
 
