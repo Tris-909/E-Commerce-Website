@@ -5,7 +5,7 @@ import { addItem } from '../../redux/actions/cart/cartActions';
 import './CollectionItem.scss';
 
 function CollectionItem(props) {
-    const { name, imageUrl, price, id} = props;
+    const { name, imageUrl, price, id} = props.item;
     let quantities = 1;
     return (
         <div className="collection-item">
