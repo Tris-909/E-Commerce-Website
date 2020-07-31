@@ -1,16 +1,38 @@
 import React from 'react'
-import './cart-icon.styles.scss';
 import { connect } from 'react-redux'; 
 import { triggerCartMenu } from '../../redux/actions/cart/cartActions';
 import { selectCartItemsCount } from '../../redux/actions/cart/cartSelector';
 import { ReactComponent as ShoppingIcon } from '../../assets/shopping-bag.svg';
+import styled from 'styled-components';
+
+const CartIconContainer = styled.div`
+  width: 45px;
+  height: 45px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+
+const ShoppingIconContainer = styled(ShoppingIcon)`
+    width: 24px;
+    height: 24px;
+`;
+
+const ItemCount = styled.div`
+    position: absolute;
+    font-size: 10px;
+    font-weight: bold;
+    bottom: 12px;
+`;
 
 const CartIcon = (props) => {
     return (
-        <div className="cart-icon" onClick={() => props.triggerCartMenu()}>
-            <ShoppingIcon className="shopping-icon" />
-            <span className="item-count"> {props.itemCount} </span>
-        </div>
+        <CartIconContainer onClick={() => props.triggerCartMenu()}>
+            <ShoppingIconContainer />
+            <ItemCount> {props.itemCount} </ItemCount>
+        </CartIconContainer>
     )
 }
 

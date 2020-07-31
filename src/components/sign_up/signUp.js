@@ -1,11 +1,24 @@
 import React, { Component } from 'react'
 
+//** PACKAGES */
+import { auth, createUserProfileDocument } from '../../firebase/firebase';
+import {withRouter} from 'react-router-dom';
+import styled from 'styled-components';
 
+//** COMPONENTS */
 import FormInput from '../form_input/formInput';
 import CustomButton from '../custom-button/CustomButton';
-import {withRouter} from 'react-router-dom';
-import './signUp.scss';
-import { auth, createUserProfileDocument } from '../../firebase/firebase';
+
+//** CSS */
+const SignUpContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 380px;
+`;
+
+const Title = styled.h1`
+  margin: 10px 0;
+`;
 
 class SignUp extends Component {
     state = {
@@ -63,8 +76,8 @@ class SignUp extends Component {
         const {displayName, email, password, confirmPassword} = this.state;
 
         return (
-        <div className='sign-up'>
-        <h1 className="title">Sign Up a new Account</h1>
+        <SignUpContainer>
+        <Title>Sign Up a new Account</Title>
 
         <form className="sign-up-form"  onSubmit={this.handleSubmit}>
           <FormInput
@@ -103,7 +116,7 @@ class SignUp extends Component {
             <CustomButton type='submit'> Sign Up </CustomButton>
           </div>
         </form>
-      </div>
+      </SignUpContainer>
         )
     }
 }

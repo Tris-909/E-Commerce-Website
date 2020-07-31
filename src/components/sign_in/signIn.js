@@ -1,12 +1,27 @@
 import React from 'react';
 
-import FormInput from '../form_input/formInput';
-import CustomButton from '../custom-button/CustomButton';
-import {withRouter} from 'react-router-dom';
+//** PACKAGES */
 import { auth, signInWithGoogle } from '../../firebase/firebase';
+import {withRouter} from 'react-router-dom';
+import styled from 'styled-components';
 
-import './signIn.scss';
+//** COMPONENTS */
+import FormInput from '../form_input/formInput';
+import { CustomButtonContainer } from '../custom-button/CustomButtonStyled';
 
+//** CSS */
+const SignInContainer = styled.div`
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+`;
+
+const Buttons = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
+//** COMPONENTS */
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
@@ -41,7 +56,7 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <div className='sign-in'>
+      <SignInContainer>
         <h1>I already have an account</h1>
         <span>Sign in with your email and password</span>
 
@@ -62,14 +77,14 @@ class SignIn extends React.Component {
             label='password'
             required
           />
-          <div className='buttons'>
-            <CustomButton type='submit'> Sign in </CustomButton>
-            <CustomButton type="button" onClick={signInWithGoogle} isGoogleSignIn>
+          <Buttons>
+            <CustomButtonContainer type='submit'> Sign in </CustomButtonContainer>
+            <CustomButtonContainer type="button" onClick={signInWithGoogle} isGoogleSignIn>
               Sign in with Google
-            </CustomButton>
-          </div>
+            </CustomButtonContainer>
+          </Buttons>
         </form>
-      </div>
+      </SignInContainer>
     );
   }
 }

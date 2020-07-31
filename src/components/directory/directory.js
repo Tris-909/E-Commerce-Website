@@ -1,10 +1,16 @@
 import React from 'react'
-import './directory.scss';
 
 import MenuItem from '../menu-item/menu-item-component';
 
 import {connect} from 'react-redux';
+import styled from 'styled-components';
 
+const DirectoryContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+`;
 
 class Directory extends React.Component {
 
@@ -20,9 +26,9 @@ class Directory extends React.Component {
         });
 
         return(
-            <div className="directory-menu">
+            <DirectoryContainer>
                 {content}
-            </div>
+            </DirectoryContainer>
         );
     }
 }
