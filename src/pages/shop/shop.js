@@ -18,15 +18,18 @@ class ShopPage extends React.Component {
         const { match } = this.props;
         return (
             <div className="shop-page">
-                <Route exact path={`${match.path}`} render={(props) => <CollectionOverviewWithSpinner isLoading={this.props.isLoading} {...props} />} />
-                <Route path={`${match.path}/:categoryId`} render={(props) => <CollectionPageWithSpinner isLoading={this.props.isLoading} {...props} /> } />
+                <Route exact path={`${match.path}`} 
+                render={(props) => <CollectionOverviewWithSpinner isLoading={this.props.isLoading} {...props} />} />
+                <Route path={`${match.path}/:categoryId`} 
+                render={(props) => <CollectionPageWithSpinner isLoading={!this.props.shopData} {...props} /> } /> 
             </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    isLoading: state.shopData.isLoading
+    isLoading: state.shopData.isLoading,
+    shopData: !!state.shopData.shopData
 });
 
 const mapDispatchToProps = dispatch => ({
