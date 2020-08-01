@@ -12,7 +12,7 @@ function CollectionOverview(props) {
     const { collections } = props;
     return (
         <Collectionoverview>
-                {collections.map(collection => (
+                {Object.keys(collections).map(key => collections[key]).map(collection => (
                     <PreviewCollection key={collection.id} name={collection.title} items={collection.items} />
                 ))}
         </Collectionoverview>

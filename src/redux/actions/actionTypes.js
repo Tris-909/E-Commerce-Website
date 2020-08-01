@@ -1,6 +1,9 @@
 //** USER REDUX */
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 
+//** SHOP-DATA REDUX */
+export const RETRIEVE_SHOP_DATA = 'RETRIEVE_SHOP_DATA';
+
 //** CART REDUX */
 export const TRIGGER_CART_MENU = "TRIGGER_CART_MENU";
 export const ADD_ITEM_TO_CART = "ADD_ITEM_TO_CART";

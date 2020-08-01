@@ -27,13 +27,5 @@ export const selectCartTotal = createSelector(
     )
 )
 
-const COLLECTION_ID_MATCH = {
-    hats: 1,
-    jackets: 2,
-    sneakers: 3,
-    womens: 4,
-    mens: 5 
-}
-
 export const  selectCollection = collectionUrlParam => 
- createSelector([sections], sections => sections.find(section => section.id === COLLECTION_ID_MATCH[collectionUrlParam]))
+ createSelector([sections], sections => sections ? sections[collectionUrlParam] : null) 
