@@ -3,6 +3,7 @@ import React from 'react';
 //** PACKAGES */
 import { auth, signInWithGoogle } from '../../firebase/firebase';
 import {withRouter} from 'react-router-dom';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 //** COMPONENTS */
@@ -22,58 +23,52 @@ const Buttons = styled.div`
 `;
 
 //** COMPONENTS */
-class SignIn extends React.Component {
-  constructor(props) {
-    super(props);
+const SignIn = (props) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-    this.state = {
-      email: '',
-      password: ''
-    };
-  }
-
-  handleSubmit = async event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    const { email, password } = this.state;
 
     try {
       await auth.signInWithEmailAndPassword(email, password);
-      this.setState({
-        email: '',
-        password: ''
-      });
-      this.props.history.push('/');
+      setEmail('');
+      setPassword('');
+      props.history.push('/');
     } catch(error) {
-
+      console.log(error);
     }
   };
 
-  handleChange = event => {
-    const { value, name } = event.target;
-
-    this.setState({ [name]: value });
+  const handleChangeEmail = event => {
+    const { value } = event.target;
+    setEmail(value);
   };
 
-  render() {
+  const handleChangePassword = event => {
+    const { value } = event.target;
+    setPassword(value);
+  };
+
     return (
       <SignInContainer>
         <h1>I already have an account</h1>
         <span>Sign in with your email and password</span>
 
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <FormInput
             name='email'
             type='email'
-            handleChange={this.handleChange}
-            value={this.state.email}
+            handleChange={handleChangeEmail}
+            value={email}
             label='email'
             required
           />
           <FormInput
             name='password'
             type='password'
-            value={this.state.password}
-            handleChange={this.handleChange}
+            value={password}
+            handleChange={handleChangePassword}
             label='password'
             required
           />
@@ -86,7 +81,6 @@ class SignIn extends React.Component {
         </form>
       </SignInContainer>
     );
-  }
 }
 
 export default withRouter(SignIn);

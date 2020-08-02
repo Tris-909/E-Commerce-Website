@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
 //** PACKAGES */
 import { auth, createUserProfileDocument } from '../../firebase/firebase';
@@ -20,26 +20,21 @@ const Title = styled.h1`
   margin: 10px 0;
 `;
 
-class SignUp extends Component {
-    state = {
-        displayName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
-    }
+const SignUp = (props) => {
+    const [userCredentials, setCredentials] = useState({displayName: '', email: '', password: '', confirmPassword: '' })
     
-    validation = ({ password, confirmPassword }) => {
-        if (password !== confirmPassword) {
+    const validation = () => {
+        if (userCredentials.password !== userCredentials.confirmPassword) {
             return false;
         } else {
             return true;
         }
     }
 
-    handleSubmit = async event => {
+    const handleSubmit = async event => {
         event.preventDefault();
     
-        const { displayName, email, password, confirmPassword } = this.state;
+        const { displayName, email, password, confirmPassword } = userCredentials;
     
         if (password !== confirmPassword) {
           alert("passwords don't match");
@@ -54,36 +49,37 @@ class SignUp extends Component {
     
           await createUserProfileDocument(user, { displayName });
     
-          this.setState({
+          setCredentials({
+            ...userCredentials,
             displayName: '',
             email: '',
             password: '',
             confirmPassword: ''
           });
-          this.props.history.push('/');
+          props.history.push('/');
         } catch (error) {
           console.error(error);
         }
       };
 
-    handleChange = event => {
+    const handleChange = event => {
         const { value, name } = event.target;
     
-        this.setState({ [name]: value });
+        setCredentials({ ...userCredentials ,[name]: value });
     };
 
-    render() {
-        const {displayName, email, password, confirmPassword} = this.state;
+
+        const {displayName, email, password, confirmPassword} = userCredentials;
 
         return (
         <SignUpContainer>
         <Title>Sign Up a new Account</Title>
 
-        <form className="sign-up-form"  onSubmit={this.handleSubmit}>
+        <form className="sign-up-form"  onSubmit={handleSubmit}>
           <FormInput
             name='displayName'
             type='text'
-            handleChange={this.handleChange}
+            handleChange={handleChange}
             value={displayName}
             label='Your UserName'
             required
@@ -91,7 +87,7 @@ class SignUp extends Component {
           <FormInput
             name='email'
             type='email'
-            handleChange={this.handleChange}
+            handleChange={handleChange}
             value={email}
             label='Email'
             required
@@ -100,14 +96,14 @@ class SignUp extends Component {
             name='password'
             type='password'
             value={password}
-            handleChange={this.handleChange}
+            handleChange={handleChange}
             label='Your Password'
             required
           />
           <FormInput
             name='confirmPassword'
             type='password'
-            handleChange={this.handleChange}
+            handleChange={handleChange}
             value={confirmPassword}
             label='Confirm You Password'
             required
@@ -118,7 +114,6 @@ class SignUp extends Component {
         </form>
       </SignUpContainer>
         )
-    }
 }
 
 export default withRouter(SignUp);
