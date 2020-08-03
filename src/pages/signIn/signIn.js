@@ -11,6 +11,12 @@ import SignUp from '../../components/sign_up/signUp';
 const SignInAndSignUpContainer = styled.div`
     display: flex;
     justify-content: space-evenly;
+
+    @media screen and (max-width: 800px) {
+        display: flex;
+        row-gap: 20px;
+        flex-direction: column;
+    }
 `;
 
 //** COMPONENTS */

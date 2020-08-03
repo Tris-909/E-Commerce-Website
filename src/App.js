@@ -14,6 +14,7 @@ import { auth, createUserProfileDocument } from './firebase/firebase';
 import {connect} from 'react-redux';
 import {setCurrentUser} from './redux/actions/user/userActions';
 import {settUser} from './redux/actions/user/userSelector';
+import {RetrieveShopDataAsync} from './redux/actions/shop/shopActions';
 
 const App = (props) => {
 
@@ -42,6 +43,10 @@ const App = (props) => {
   }, []);
 
   useEffect(() => {
+    props.RetrieveShopDataAsync();
+  }, [props.RetrieveShopDataAsync]); 
+
+  useEffect(() => {
     return () => unsubcribeFromAuth();
   }, [unsubcribeFromAuth]);
 
@@ -64,7 +69,8 @@ const mapStateToProps = (state) => ({
 }); 
 
 const mapDispatchToProps = (dispatch) => ({
-  setUser: user => dispatch(setCurrentUser(user))
+  setUser: user => dispatch(setCurrentUser(user)),
+  RetrieveShopDataAsync: () => dispatch(RetrieveShopDataAsync()) 
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

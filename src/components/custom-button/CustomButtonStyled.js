@@ -57,4 +57,9 @@ const getButtonStyles = props => {
     display: flex;
     justify-content: center;
     ${getButtonStyles}
+
+    @media screen and (max-width: 800px) {
+      padding: 0 15px 0 15px;
+      margin: 10px;
+  }
   `;

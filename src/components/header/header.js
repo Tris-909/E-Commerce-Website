@@ -83,7 +83,6 @@ function Header(props) {
             </LogoContainer>
             <Options>
                 <Option to="/shop">SHOP</Option>
-                <Option to="/contact">CONTACT</Option>
                 {signOutContent}
                 <CartIcon /> 
             </Options>

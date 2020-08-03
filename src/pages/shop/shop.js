@@ -19,7 +19,7 @@ class ShopPage extends React.Component {
         return (
             <div className="shop-page">
                 <Route exact path={`${match.path}`} 
-                render={(props) => <CollectionOverviewWithSpinner isLoading={this.props.isLoading} {...props} />} />
+                render={(props) => <CollectionOverviewWithSpinner isLoading={this.props.isLoading} {...props} /> } />
                 <Route path={`${match.path}/:categoryId`} 
                 render={(props) => <CollectionPageWithSpinner isLoading={!this.props.shopData} {...props} /> } /> 
             </div>

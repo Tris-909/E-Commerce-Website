@@ -15,6 +15,10 @@ const SignInContainer = styled.div`
     width: 380px;
     display: flex;
     flex-direction: column;
+
+    @media screen and (max-width: 500px) {
+      width: 300px;
+    }
 `;
 
 const Buttons = styled.div`
