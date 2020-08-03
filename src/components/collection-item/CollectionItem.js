@@ -30,6 +30,10 @@ const CollectionItemContainer = styled.div`
     align-items: center;
     position: relative;
 
+    @media screen and (max-width: 500px) {
+        width: 100%
+    }
+
     &:hover ${Image} {
         opacity: 0.8;
     }

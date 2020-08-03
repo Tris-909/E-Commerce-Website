@@ -25,6 +25,15 @@ const ItemsContainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 10px;
+
+    @media screen and (max-width: 500px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 10px;
+        row-gap: 20px;
+        grid-template-rows: 1fr;
+        justify-content: space-between;
+    }
 `;
 
 const CollectionItemContainer = styled(CollectionItem)`

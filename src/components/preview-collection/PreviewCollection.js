@@ -16,6 +16,15 @@ const Title = styled.h1`
 const Preview = styled.div`
     display: flex;
     justify-content: space-between;
+
+    @media screen and (max-width: 500px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 10px;
+        row-gap: 20px;
+        grid-template-rows: 1fr;
+        justify-content: space-between;
+    }
 `;
 
 export default function PreviewCollection({ name, items }) {

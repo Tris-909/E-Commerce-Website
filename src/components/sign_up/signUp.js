@@ -22,14 +22,6 @@ const Title = styled.h1`
 
 const SignUp = (props) => {
     const [userCredentials, setCredentials] = useState({displayName: '', email: '', password: '', confirmPassword: '' })
-    
-    const validation = () => {
-        if (userCredentials.password !== userCredentials.confirmPassword) {
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     const handleSubmit = async event => {
         event.preventDefault();

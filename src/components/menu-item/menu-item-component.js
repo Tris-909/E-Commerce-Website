@@ -40,6 +40,10 @@ const MenuItemContainer = styled.div`
         height: 380px;
     }
 
+    @media screen and (max-width: 500px) {
+        height: 200px;
+    }
+
     [&:first-child]: {
         margin-right: 7.5px;
     }
